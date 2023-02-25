@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # get the components of SP500 and drop all the stocks without enough data
 data = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')[0]['Symbol'].tolist()
-df = yf.download(data, start='2010-01-01', interval='1mo')['Adj Close'].dropna(axis=1)
+df = yf.download(data, start='2000-01-01', interval='1mo')['Adj Close'].dropna(axis=1)
 df = np.log(df / df.shift(1)).dropna()
 
 
@@ -49,6 +49,7 @@ for i in x:
 
 plt.scatter(x=df['std'], y=df['return'])
 plt.axvline(x=min(x), color='r', linestyle='dashed', label='mean variance')
+plt.axvline([0,0.01], [optimal_x, spot[optimal_x]], color='r', linestyle='dashed', label='mean variance')
 plt.plot(0, 0.01, marker='o', markersize=10, color='y')
 plt.annotate('mean-variance portfolio {}'.format((round(min(x), 3), spot[min(x)])), xy=(min(x), spot[min(x)]),
              arrowprops=dict(facecolor='black', shrink=0.05))
