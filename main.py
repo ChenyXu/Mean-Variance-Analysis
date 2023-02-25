@@ -49,7 +49,7 @@ for i in x:
 
 plt.scatter(x=df['std'], y=df['return'])
 plt.axvline(x=min(x), color='r', linestyle='dashed', label='mean variance')
-plt.axvline([0,0.01], [optimal_x, spot[optimal_x]], color='r', linestyle='dashed', label='mean variance')
+plt.axvline([0,0.01], [optimal_x, spot[optimal_x]], color='r', linestyle='dashed', label='optimal portfolio line')
 plt.plot(0, 0.01, marker='o', markersize=10, color='y')
 plt.annotate('mean-variance portfolio {}'.format((round(min(x), 3), spot[min(x)])), xy=(min(x), spot[min(x)]),
              arrowprops=dict(facecolor='black', shrink=0.05))
